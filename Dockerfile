@@ -1,9 +1,10 @@
 FROM n8nio/n8n
 
 USER root
-RUN mkdir -p /data && chown -R node:node /data
 
-USER node
-ENV N8N_USER_FOLDER=/data
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 EXPOSE 5678
+
+ENTRYPOINT ["/entrypoint.sh"]
